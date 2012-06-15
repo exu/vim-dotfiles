@@ -3,8 +3,11 @@
 ** Quick install guide
 
   Copy this line and paste into terminal, enjoy
-  
+
+#+BEGIN_SRC bash
   curl -L [[https://raw.github.com/exu/vim-dotfiles/master/gitinstall]]|bash
+#+END_SRC
+
 
 ** machine based config
    my vimrc runs ~/.vim/machine/YOURMACHINENAME.vim file
