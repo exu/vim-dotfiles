@@ -17,6 +17,12 @@
 - gpciker - fuzzy files searching
 - cowsay - cow powers for linux
 - ack - simple grep
+- syntastic 
+    - yaml - npm install js-yaml
+    - phpcs
+    - tidy - sudo apt-get install tidy
+    - css - npm install -g csslint
+    - js - npm install -g jslint
 
 You can install them in Ubuntu from apt
 #+BEGIN_SRC bash
