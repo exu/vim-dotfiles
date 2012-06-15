@@ -19,7 +19,7 @@
 - ack - simple grep
 - syntastic 
     - yaml - npm install js-yaml
-    - phpcs
+    - phpcs - pear install PHP_CodeSniffer
     - tidy - sudo apt-get install tidy
     - css - npm install -g csslint
     - js - npm install -g jslint
