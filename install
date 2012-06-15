@@ -1,0 +1,20 @@
+#!/bin/sh
+
+HOMEDIR=/home/exu
+VIMFILES=Dropbox/Dotfiles/common/vim
+VIMRCDIR=$HOMEDIR/.vimrc
+VIMDIR=$HOMEDIR/.vim
+
+if [ -L $VIMDIR ];
+then
+    rm $VIMDIR
+fi
+
+if [ -L $VIMRCDIR ];
+then
+    rm $VIMRCDIR
+fi
+
+ln -s $HOMEDIR/$VIMFILES $VIMDIR
+ln -s $HOMEDIR/$VIMFILES/vimrc $VIMRCDIR
+

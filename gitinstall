@@ -1,0 +1,5 @@
+cd ~
+rm -rf ~/.vim
+rm ~/.vimrc
+git clone https://bitbucket.org/exu/vim.git .vim
+ln -s ~/.vim/vimrc ~/.vimrc

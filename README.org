@@ -1,0 +1,12 @@
+* exu vim dotfiles
+
+** Quick install guide
+
+  Copy this line and paste into terminal, enjoy
+  
+  curl -L http://goo.gl/pX2uo|bash
+
+** machine based config
+   my vimrc runs ~/.vim/machine/YOURMACHINENAME.vim file
+   on the end of vimrc tfile
+
