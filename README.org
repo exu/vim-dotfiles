@@ -18,11 +18,11 @@
 - cowsay - cow powers for linux
 - ack - simple grep
 - syntastic 
-    - yaml - npm install js-yaml
-    - phpcs - pear install PHP_CodeSniffer
-    - tidy - sudo apt-get install tidy
-    - css - npm install -g csslint
-    - js - npm install -g jslint
+    - yaml - =npm install js-yaml=
+    - phpcs - =pear install PHP_CodeSniffer=
+    - tidy - =sudo apt-get install tidy=
+    - css - =npm install -g csslint=
+    - js - =npm install -g jslint=
 
 You can install them in Ubuntu from apt
 #+BEGIN_SRC bash
