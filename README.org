@@ -14,11 +14,12 @@
    on the end of vimrc tfile
 
 ** External dependencies
-- gpciker
-- cowsay
+- gpciker - fuzzy files searching
+- cowsay - cow powers for linux
+- ack - simple grep
 
 You can install them in Ubuntu from apt
 #+BEGIN_SRC bash
-   sudo apt-get install gpicker cowsay
+   sudo apt-get install gpicker cowsay ack
 #+END_SRC
 
