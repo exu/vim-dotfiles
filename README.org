@@ -13,3 +13,12 @@
    my vimrc runs ~/.vim/machine/YOURMACHINENAME.vim file
    on the end of vimrc tfile
 
+** External dependencies
+- gpciker
+- cowsay
+
+You can install them in Ubuntu from apt
+#+BEGIN_SRC bash
+   sudo apt-get install gpicker cowsay
+#+END_SRC
+
