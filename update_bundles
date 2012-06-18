@@ -6,8 +6,9 @@ git_bundles = [
   "git://github.com/ervandew/supertab.git",
   "git://github.com/godlygeek/tabular.git",
   #"git://github.com/hallison/vim-rdoc.git", #repo not exists!!
-  "git://github.com/msanders/snipmate.vim.git",
-  ["git://github.com/exu/snipmate-snippets.git", "snipmate.vim/snippets"],
+  # "git://github.com/msanders/snipmate.vim.git", replaced by ultisnips
+  "git://github.com/SirVer/ultisnips.git",
+  # ["git://github.com/exu/snipmate-snippets.git", "snipmate.vim/snippets"],
   "git://github.com/pangloss/vim-javascript.git",
   "git://github.com/scrooloose/nerdtree.git",
   "git://github.com/scrooloose/syntastic.git",
@@ -44,7 +45,8 @@ git_bundles = [
   "git://github.com/exu/symfony_menu.vim.git",
   "git://github.com/exu/img2data.vim.git",
   "git://github.com/othree/html5.vim.git",
-  "git://github.com/spf13/PIV.git",
+  "git://github.com/exu/PIV.git", # bug with syntax php
+  # "git://github.com/spf13/PIV.git",
   # "git://github.com/StanAngeloff/php.vim.git",
 
   # "git://github.com/altercation/vim-colors-solarized.git",

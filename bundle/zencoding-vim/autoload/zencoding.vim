@@ -232,7 +232,6 @@ function! zencoding#getFileType()
   if type == 'xslt' | let type = 'xsl' | endif
   if type == 'htmldjango' | let type = 'html' | endif
   if type == 'html.django_template' | let type = 'html' | endif
-  if type == 'scss' | let type = 'css' | endif
   if len(type) == 0 && len(globpath(&rtp, 'autoload/zencoding/lang/'.&ft.'.vim'))
     let type = &ft
   endif
@@ -492,10 +491,7 @@ function! zencoding#anchorizeURL(flag)
   endif
 
   let mx = '.*<title[^>]*>\s*\zs\([^<]\+\)\ze\s*<\/title[^>]*>.*'
-  let content = zencoding#util#getContentFromURL(url, 0)
-  if len(matchstr(content, mx)) == 0
-    let content = zencoding#util#getContentFromURL(url, 1)
-  endif
+  let content = zencoding#util#getContentFromURL(url)
   let content = substitute(content, '\r', '', 'g')
   let content = substitute(content, '[ \n]\+', ' ', 'g')
   let content = substitute(content, '<!--.\{-}-->', '', 'g')
@@ -534,7 +530,7 @@ function! zencoding#anchorizeURL(flag)
 endfunction
 
 function! zencoding#codePretty() range
-  let type = input('FileType: ', '', 'filetype')
+  let type = input('FileType: ', &ft, 'filetype')
   if len(type) == 0
     return
   endif
@@ -1100,6 +1096,9 @@ let s:zen_settings = {
 \        'filters': 'fc'
 \    },
 \    'sass': {
+\        'extends': 'css',
+\    },
+\    'scss': {
 \        'extends': 'css',
 \    },
 \    'html': {

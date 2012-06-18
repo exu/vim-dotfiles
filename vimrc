@@ -316,6 +316,8 @@ filetype plugin indent on
 let g:snips_author = 'Jacek Wysocki'
 let g:gist_detect_filetype = 1
 
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
+
 " testing
 " Don't screw up folds when inserting text that might affect them, until
 " leaving insert mode. Foldmethod is local to the window. Protect against
