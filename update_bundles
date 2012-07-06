@@ -8,7 +8,7 @@ git_bundles = [
   #"git://github.com/hallison/vim-rdoc.git", #repo not exists!!
   # "git://github.com/msanders/snipmate.vim.git", replaced by ultisnips
   "git://github.com/SirVer/ultisnips.git",
-  # ["git://github.com/exu/snipmate-snippets.git", "snipmate.vim/snippets"],
+  ["git://github.com/exu/vim-ultisnips-snippets.git", "ultisnips/snippets"],
   "git://github.com/pangloss/vim-javascript.git",
   "git://github.com/scrooloose/nerdtree.git",
   "git://github.com/scrooloose/syntastic.git",
@@ -27,7 +27,9 @@ git_bundles = [
   #"git://github.com/tsaleh/vim-shoulda.git",
   "git://github.com/tomtom/tcomment_vim.git",
   "git://github.com/vim-ruby/vim-ruby.git",
-  "git://github.com/vim-scripts/Gist.vim.git",
+  "git://github.com/mattn/webapi-vim.git", #required by gist
+  "git://github.com/mattn/gist-vim.git",
+  # "git://github.com/vim-scripts/Gist.vim.git",
   "git://github.com/vim-scripts/vimwiki.git",
   "git://github.com/vim-scripts/bufexplorer.zip.git",
   "git://github.com/vim-scripts/mru.vim.git",
@@ -46,6 +48,8 @@ git_bundles = [
   "git://github.com/exu/img2data.vim.git",
   "git://github.com/othree/html5.vim.git",
   "git://github.com/exu/PIV.git", # bug with syntax php
+  "git://github.com/exu/vim-python_koans.git",
+  "git://github.com/stephpy/vim-php-cs-fixer.git", # Code sniffer fixer integration
   # "git://github.com/spf13/PIV.git",
   # "git://github.com/StanAngeloff/php.vim.git",
 

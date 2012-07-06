@@ -9,7 +9,9 @@ try:
 
     file_type = mimetypes.guess_type(url)[0]
 
-    if not 'image' in file_type:
+    print "Found %s image type" % file_type
+
+    if file_type and not 'image' in file_type:
         raise Exception('Invalid file type: %s, gimme IMAGE!' % file_type)
 
     if not (o.path and o.scheme):

@@ -110,6 +110,14 @@ set wildignore+=.project
 
 " faster/closer leader key
 let mapleader = ","
+let maplocalleader = "\\"
+
+" global movements remap
+onoremap p i(
+onoremap m i{
+onoremap " i"
+onoremap ' i'
+
 
 " wrapping lines in visual mode
 vnoremap   <   <gv
@@ -125,7 +133,7 @@ vnoremap   >   >gv
 " @todo add plugin to handle running/compiling scripts
 nmap         <F5>           :w<CR>:!%<CR>
 nmap         <S-F5>         :w<CR>:!php     %<CR>
-nmap         <S-F6>         :w<CR>:silent !gnome-terminal -x bash -c "php %; bash"<CR>
+nmap         <S-F6>         :w<CR>:silent !gnome-terminal -x bash -c "php %; read -n1 -r -p \"\" key"<CR>
 
 " save/close helpers
 nmap         <F2>           :w<CR>
@@ -210,6 +218,13 @@ vnoremap     <S-Insert>     "+p
 nnoremap     <C-Insert>     "+Y
 nnoremap     <S-Insert>     "+p
 
+
+map          <C-S-V>     <C-R>+
+map!         <C-S-V>     <C-R>+
+vnoremap     <C-S-C>     "+y
+vnoremap     <C-S-V>     "+p
+nnoremap     <C-S-C>     "+Y
+nnoremap     <C-S-V>     "+p
 " simple silent SVN commit
 " funny version map   <F11>     :w<CR>:!svn commit -m "$(fortune)" %<CR>
 map   <F11>     :w<CR>:!svn commit -m "" %<CR>
@@ -234,7 +249,7 @@ vmap   <Leader><Space>   :TComment<CR>
 
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
-map   <Leader>m    :BufExplorer<CR>
+map   <Leader>.    :BufExplorer<CR>
 
 " PHP goto parent class (use with ctags generate for project)
 map   <Leader>]    /extends /e<CR>:normal l<CR>:noh<CR>g<C-]>
@@ -292,9 +307,19 @@ nmap <Leader>d :diffthis<CR>
 
 
 " Change CtrP to Gpicker (external program needed)
-map <Leader>p :GPickFile<CR>
 noremap <C-p> :GPickFile<CR>
-map <Leader>. :GPickBuffer<CR>
+
+" Php CS Fixer
+nnoremap <silent><leader>p :call PhpCsFixerFixFile()<CR>
+
+map <Leader>= :!cat % \| nc -l 5555 &<CR>:let @+='http://10.0.0.89:5555'<CR>
+map <Leader>- :silent !gnome-terminal -x bash -c "cat % \| nc -l -k 5555 "<CR>
+
+imap <A-;> <ESC>A;<CR>
+
+
+
+map <Leader>ck :call RunKoans()<cr>f_
 
 " }}}
 
@@ -304,9 +329,9 @@ map <Leader>. :GPickBuffer<CR>
 " {{{
 
 filetype off
-" call pathogen#runtime_append_all_bundles()
-" call pathogen#helptags()
+
 if has('win32')
+    "i don't want run all bundles on windows (it should be fast editor "
     call pathogen#infect('~/vimfiles/bundle-win')
 else 
     call pathogen#infect()
@@ -318,23 +343,38 @@ let g:gist_detect_filetype = 1
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
 
-" testing
-" Don't screw up folds when inserting text that might affect them, until
-" leaving insert mode. Foldmethod is local to the window. Protect against
-" screwing up folding when switching between windows.
-autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-
 let g:vimwiki_list = [{'path': '~/.vim/wiki/'}]
 
 " let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_disabled_filetypes = ['js', 'html']
+let g:syntastic_phpcs_disable=1 " it's annoying in CRM :)
 
 let g:CommandTCaseSensitive=1
 let g:CommandTNeverShowDotFiles=1
 
+let g:DisableAutoPHPFolding=1
+
+
+
+" PHP-cs-fixer git://github.com/stephpy/vim-php-cs-fixer.git
+let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_level = "all"                " which level ?
+let g:php_cs_fixer_config = "default"           " configuration
+let g:php_cs_fixer_php_path = "php"             " Path to PHP
+let g:php_cs_fixer_fixers_list = ""             " List of fixers
+let g:php_cs_fixer_enable_default_mapping = 1   " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
+
+
+" testing
+" Don't screw up folds when inserting text that might affect them, until
+" leaving insert mode. Foldmethod is local to the window. Protect against
+" screwing up folding when switching between windows.
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
 " }}}
 
@@ -376,6 +416,9 @@ au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
 " {{{
 
 " My information
+"I've always write it BAD
+iab docuement document
+iab Docuement Document
 iab xdate <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
 iab xme <C-R> Jacek Wysocki
 iab xME <C-R> Jacek Wysocki <jacek.wysocki@gmail.com>
