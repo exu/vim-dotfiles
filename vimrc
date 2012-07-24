@@ -391,6 +391,7 @@ autocmd InsertEnter * se cul
 let g:xml_syntax_folding=1
 au FileType xml  setlocal foldmethod=syntax
 au FileType vim  setlocal foldmethod=marker | setlocal foldlevel=0
+au FileType lua  setlocal foldmethod=marker | setlocal foldlevel=0
 au FileType php  setlocal foldmethod=syntax | setlocal foldlevel=99 | setlocal foldlevelstart=99
 au FileType html setlocal foldmethod=syntax
 au FileType ant  setlocal foldmethod=syntax
