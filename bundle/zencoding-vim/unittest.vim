@@ -368,7 +368,7 @@ finish
         },
         {
           'query': "div#box$*3>h3+p.bar*2|e",
-          'result': "&lt;div id=\"box1\"&gt;\n\t&amp;lt;h3&amp;gt;&amp;lt;/h3&amp;gt;\n\t&amp;lt;p class=\"bar\"&amp;gt;&amp;lt;/p&amp;gt;\n\t&amp;lt;p class=\"bar\"&amp;gt;&amp;lt;/p&amp;gt;\n&lt;/div&gt;\n&lt;div id=\"box2\"&gt;\n\t&amp;lt;h3&amp;gt;&amp;lt;/h3&amp;gt;\n\t&amp;lt;p class=\"bar\"&amp;gt;&amp;lt;/p&amp;gt;\n\t&amp;lt;p class=\"bar\"&amp;gt;&amp;lt;/p&amp;gt;\n&lt;/div&gt;\n&lt;div id=\"box3\"&gt;\n\t&amp;lt;h3&amp;gt;&amp;lt;/h3&amp;gt;\n\t&amp;lt;p class=\"bar\"&amp;gt;&amp;lt;/p&amp;gt;\n\t&amp;lt;p class=\"bar\"&amp;gt;&amp;lt;/p&amp;gt;\n&lt;/div&gt;\n",
+          'result': "&lt;div id=\"box1\"&gt;\n\t&lt;h3&gt;&lt;/h3&gt;\n\t&lt;p class=\"bar\"&gt;&lt;/p&gt;\n\t&lt;p class=\"bar\"&gt;&lt;/p&gt;\n&lt;/div&gt;\n&lt;div id=\"box2\"&gt;\n\t&lt;h3&gt;&lt;/h3&gt;\n\t&lt;p class=\"bar\"&gt;&lt;/p&gt;\n\t&lt;p class=\"bar\"&gt;&lt;/p&gt;\n&lt;/div&gt;\n&lt;div id=\"box3\"&gt;\n\t&lt;h3&gt;&lt;/h3&gt;\n\t&lt;p class=\"bar\"&gt;&lt;/p&gt;\n\t&lt;p class=\"bar\"&gt;&lt;/p&gt;\n&lt;/div&gt;\n",
         },
         {
           'query': "div>div#page>p.title+p|c",
@@ -431,6 +431,10 @@ finish
           'result': "<div class=\"boxes\">\n\t<div class=\"box2\">\n\t\t<section>\n\t\t\t<h2>a</h2>\n\t\t\t<p>b</p>\n\t\t</section>\n\t</div>\n\t<div class=\"box1\">\n\t\t<section>\n\t\t\t<h2>c</h2>\n\t\t\t<p>d</p>\n\t\t\t<p>e</p>\n\t\t\t<blockquote>\n\t\t\t\t<h2>f</h2>\n\t\t\t\t<h3>g</h3>\n\t\t\t</blockquote>\n\t\t\t<p>h</p>\n\t\t</section>\n\t</div>\n</div>\n",
         },
         {
+          'query': "(div>(label+input))+div",
+          'result': "<div>\n\t<label for=\"\"></label>\n\t<input type=\"\" />\n</div>\n<div></div>\n",
+        },
+        {
           'query': "test1\ntest2\ntest3$$$$\\<esc>ggVG\\<c-y>,ul>li>span*>a\\<cr>$$$$",
           'result': "<ul>\n\t<li>\n\t\t<span><a href=\"\">test1</a></span>\n\t\t<span><a href=\"\">test2</a></span>\n\t\t<span><a href=\"\">test3</a></span>\n\t</li>\n</ul>",
         },
@@ -491,7 +495,7 @@ finish
       'tests': [
         {
           'query': "img[src=http://mattn.kaoriya.net/images/logo.png]$$$$\\<c-y>,\\<c-y>i$$$$",
-          'result': "<img src=\"http://mattn.kaoriya.net/images/logo.png\" alt=\"\" width=\"96\" height=\"96\" />\n",
+          'result': "<img src=\"http://mattn.kaoriya.net/images/logo.png\" alt=\"\" width=\"96\" height=\"96\" />",
         },
         {
           'query': "img[src=/logo.png]$$$$\\<c-y>,\\<c-y>i$$$$",

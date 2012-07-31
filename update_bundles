@@ -34,6 +34,11 @@ git_bundles = [
   "git://github.com/vim-scripts/bufexplorer.zip.git",
   "git://github.com/vim-scripts/mru.vim.git",
   "git://repo.or.cz/vcscommand",
+
+  "git://github.com/groenewege/vim-less.git",
+  "git://github.com/hail2u/vim-css3-syntax.git",
+  "git://github.com/skammer/vim-css-color.git",
+
   # "git://github.com/2072/PHP-Indenting-for-VIm.git",
   "git://github.com/mattn/zencoding-vim.git",
   "git://github.com/Raimondi/delimitMate.git",

@@ -397,6 +397,7 @@ au FileType html setlocal foldmethod=syntax
 au FileType ant  setlocal foldmethod=syntax
 au FileType yaml setlocal foldmethod=indent | setlocal softtabstop=2 | setlocal shiftwidth=2 | setlocal tabstop=2
 au FileType ruby setlocal foldmethod=syntax | setlocal softtabstop=2 | setlocal shiftwidth=2 | setlocal tabstop=2
+au FileType python setlocal foldmethod=indent | setlocal softtabstop=4 | setlocal shiftwidth=4 | setlocal tabstop=4
 
 au FileType eruby map <buffer> <C-?> <%=  %><C-o>2h
 au FileType ruby map <buffer> <C-?> <%=  %><C-o>2h

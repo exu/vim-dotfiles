@@ -40,6 +40,9 @@ fun! PhpCsFixerFix(path, dry_run)
     if v:shell_error
         echohl Error | echo s:output | echohl None
     else
+        if a:dry_run != 1
+            exec 'edit!'
+        endif
         let s:nbLines = len(split(s:output, '\n'))
         let s:nbFilesModified = (s:nbLines - 1)
 

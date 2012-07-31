@@ -9,7 +9,9 @@ First "cd" to your koans working directory
 You can map it to some key combination, I have this one:
 
     map <Leader>ck :call RunKoans()<cr>
-
+or
+    map <Leader>ck :call RunKoans()<cr>f_
+to goto first __ string :)
 
 # TODO
 
