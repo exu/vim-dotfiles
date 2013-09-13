@@ -20,7 +20,7 @@ VENDORS=(
   git@github.com:tpope/vim-surround.git
   git@github.com:tsaleh/vim-matchit.git
   git@github.com:tomtom/tcomment_vim.git
-  git@github.com:vim-ruby/vim-ruby.git
+  #git@github.com:vim-ruby/vim-ruby.git
   git@github.com:mattn/webapi-vim.git
   git@github.com:mattn/gist-vim.git
   git@github.com:vim-scripts/vimwiki.git
@@ -28,8 +28,8 @@ VENDORS=(
   git@github.com:vim-scripts/mru.vim.git
 
   git@github.com:groenewege/vim-less.git
-  # git@github.com:hail2u/vim-css3-syntax.git
-  # git@github.com:skammer/vim-css-color.git
+  git@github.com:hail2u/vim-css3-syntax.git
+  git@github.com:skammer/vim-css-color.git
 
   git@github.com:mattn/emmet-vim.git
 
@@ -39,7 +39,7 @@ VENDORS=(
   git@github.com:jceb/vim-orgmode.git
   git@github.com:vim-scripts/utl.vim.git
   git@github.com:exu/pgsql.vim.git
-  git@github.com:exu/symfony_menu.vim.git
+  # git@github.com:exu/symfony_menu.vim.git
   git@github.com:exu/img2data.vim.git
   git@github.com:othree/html5.vim.git
   # git@github.com:exu/PIV.git
