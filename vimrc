@@ -244,7 +244,7 @@ map    <Leader>ii         :call Img2Data()<CR>
 cmap   w!!                %!sudo tee > /dev/null %<CR>
 
 " Comments plugin mapping
-map    <Leader><Space>   :TComment<CR>
+" map    <Leader><Space>   :TComment<CR>
 vmap   <Leader><Space>   :TComment<CR>
 
 nnoremap <silent> <F9> :TagbarToggle<CR>
