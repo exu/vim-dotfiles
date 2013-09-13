@@ -180,7 +180,7 @@ map   <A-k>       <C-W><Up>
 map   <A-l>       <C-W><Right>
 map   <Leader>j   <C-W><C-W>
 
-"NERDTree plugin bindings
+"NERDTree plug-in bindings
 map        <F4>        :NERDTree<CR>
 nnoremap   <Leader>r   :NERDTreeFind<CR>
 
@@ -323,19 +323,63 @@ map <Leader>ck :call RunKoans()<cr>f_
 
 " }}}
 
+
+" ==============================================================================
+" Vundle
+" ==============================================================================
+" {{{
+"
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'mileszs/ack.vim'
+Bundle 'ervandew/supertab'
+Bundle 'godlygeek/tabular'
+Bundle 'SirVer/ultisnips'
+Bundle 'pangloss/vim-javascript'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-surround'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+Bundle 'vim-scripts/vimwiki'
+Bundle 'vim-scripts/bufexplorer.zip'
+Bundle 'vim-scripts/mru.vim'
+Bundle 'groenewege/vim-less'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'skammer/vim-css-color'
+Bundle 'mattn/emmet-vim'
+Bundle 'Raimondi/delimitMate'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'vim-scripts/dbext.vim'
+Bundle 'jceb/vim-orgmode'
+Bundle 'vim-scripts/utl.vim'
+Bundle 'exu/pgsql.vim'
+Bundle 'othree/html5.vim'
+Bundle 'stephpy/vim-php-cs-fixer'
+
+Bundle 'moll/vim-node'
+
+
+" }}}
+
+
 " ==============================================================================
 " Plugins
 " ==============================================================================
 " {{{
 
-filetype off
 
-if has('win32')
-    "i don't want run all bundles on windows (it should be fast editor "
-    call pathogen#infect('~/vimfiles/bundle-win')
-else 
-    call pathogen#infect()
-endif
 
 filetype plugin indent on
 let g:snips_author = 'Jacek Wysocki'
@@ -356,8 +400,6 @@ let g:CommandTNeverShowDotFiles=1
 
 let g:DisableAutoPHPFolding=1
 
-
-
 " PHP-cs-fixer git://github.com/stephpy/vim-php-cs-fixer.git
 let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
 let g:php_cs_fixer_level = "all"                " which level ?
@@ -367,7 +409,6 @@ let g:php_cs_fixer_fixers_list = ""             " List of fixers
 let g:php_cs_fixer_enable_default_mapping = 1   " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
-
 
 " testing
 " Don't screw up folds when inserting text that might affect them, until
