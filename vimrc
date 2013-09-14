@@ -99,6 +99,7 @@ set wildignore+=.project
 " Autocompletition {{{
 " disable info window on top of editor
 " set completeopt="menu"
+set tags=tags,tags.vendor,/usr/share/php/symfony/tags
 " }}}
 
 " }}}
@@ -199,7 +200,7 @@ nnoremap   <Leader>g   :b#<CR>
 nnoremap   <C-F12>     :!symfony cc<CR>
 nnoremap   <C-S-F12>   :e ~/Workspace/run.sql<CR>
 nnoremap   <C-S-F11>   :call SymfonyMenu()<CR>
-nnoremap   <C-F11>     :set tags=tags,/usr/share/php/symfony/tags<CR>
+nnoremap   <C-F11>     :set tags=tags,tags.vendor,/usr/share/php/symfony/tags<CR>
 
 "Custom escaping
 imap          <F1>          <Esc>
@@ -207,8 +208,9 @@ map           <F1>          <Esc>
 map!          <F1>          <Esc>
 imap          <F2>          <Esc>:w<CR>
 map!          <F2>          <Esc>:w<CR>
+
 nnoremap      <C-SPACE>     i
-imap          <C-SPACE>     <Esc>
+imap          <C-SPACE>     <C-x><C-o>
 
 "Shift+Insert correction in insert modes
 map          <S-Insert>     <C-R>+
@@ -321,6 +323,8 @@ imap <A-;> <ESC>A;<CR>
 
 map <Leader>ck :call RunKoans()<cr>f_
 
+map <Leader>ev :e $MYVIMRC<CR>
+
 " }}}
 
 
@@ -369,8 +373,12 @@ Bundle 'othree/html5.vim'
 Bundle 'stephpy/vim-php-cs-fixer'
 
 Bundle 'moll/vim-node'
+Bundle 'tobyS/vmustache'
+Bundle 'tobyS/pdv'
+Bundle "tobyS/skeletons.vim"
 
-
+Bundle 'marijnh/tern_for_vim'
+Bundle 'arnaud-lb/vim-php-namespace'
 " }}}
 
 
@@ -409,6 +417,9 @@ let g:php_cs_fixer_fixers_list = ""             " List of fixers
 let g:php_cs_fixer_enable_default_mapping = 1   " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
+
+let g:pdv_template_dir = $HOME .".vim/bundle/pdv/templates_snip"
+nnoremap \d :call pdv#DocumentWithSnip()<CR>
 
 " testing
 " Don't screw up folds when inserting text that might affect them, until
