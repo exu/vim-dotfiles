@@ -18,7 +18,7 @@
 - cowsay - cow powers for linux
 - ack - simple grep
 - syntastic 
-    - yaml - =npm install js-yaml=
+    - yaml - =npm install -g js-yaml=
     - phpcs - =pear install PHP_CodeSniffer=
     - tidy - =sudo apt-get install tidy=
     - css - =npm install -g csslint=
@@ -26,6 +26,11 @@
 
 You can install them in Ubuntu from apt
 #+BEGIN_SRC bash
-   sudo apt-get install gpicker cowsay ack
+   sudo apt-get install cowsay ack
 #+END_SRC
 
+
+
+Gpicker could be installed from:
+
+http://download.savannah.gnu.org/releases/gpicker/
