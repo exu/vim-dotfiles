@@ -1,4 +1,6 @@
 " +--------------------------------------+
+"l][-[
+"-[
 " |   CUSTOM VIM CONFIG FILE             |
 " |    _______________________           |
 " |   / @author jacek wysocki \          |
@@ -104,6 +106,63 @@ set tags=tags,tags.vendor,/usr/share/php/symfony/tags
 
 " }}}
 
+
+" ==============================================================================
+" Vundle
+" ==============================================================================
+" {{{
+"
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'mileszs/ack.vim'
+Bundle 'ervandew/supertab'
+Bundle 'godlygeek/tabular'
+Bundle 'SirVer/ultisnips'
+Bundle 'pangloss/vim-javascript'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-surround'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+Bundle 'vim-scripts/vimwiki'
+Bundle 'vim-scripts/bufexplorer.zip'
+Bundle 'vim-scripts/mru.vim'
+Bundle 'groenewege/vim-less'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'skammer/vim-css-color'
+Bundle 'mattn/emmet-vim'
+Bundle 'Raimondi/delimitMate'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'vim-scripts/dbext.vim'
+Bundle 'jceb/vim-orgmode'
+Bundle 'vim-scripts/utl.vim'
+Bundle 'exu/pgsql.vim'
+Bundle 'othree/html5.vim'
+Bundle 'stephpy/vim-php-cs-fixer'
+
+Bundle 'moll/vim-node'
+Bundle 'tobyS/vmustache'
+Bundle 'tobyS/pdv'
+Bundle "tobyS/skeletons.vim"
+
+Bundle 'marijnh/tern_for_vim'
+Bundle 'arnaud-lb/vim-php-namespace'
+
+Bundle 'joonty/vdebug.git'
+" }}}
+
+
 " ==============================================================================
 " Keyboard Mappings
 " ==============================================================================
@@ -197,15 +256,16 @@ nnoremap   <Leader>b   :bp<CR>
 nnoremap   <Leader>n   :bn<CR>
 nnoremap   <Leader>g   :b#<CR>
 
-nnoremap   <C-F12>     :!symfony cc<CR>
+nnoremap   <C-F12>     :!scc<CR>
 nnoremap   <C-S-F12>   :e ~/Workspace/run.sql<CR>
 nnoremap   <C-S-F11>   :call SymfonyMenu()<CR>
 nnoremap   <C-F11>     :set tags=tags,tags.vendor,/usr/share/php/symfony/tags<CR>
 
+map       <F1>vv      :e $MYVIMRC<CR>
+map       <F1>s       :Gstatus<CR>
+
+
 "Custom escaping
-imap          <F1>          <Esc>
-map           <F1>          <Esc>
-map!          <F1>          <Esc>
 imap          <F2>          <Esc>:w<CR>
 map!          <F2>          <Esc>:w<CR>
 
@@ -326,61 +386,6 @@ map <Leader>ck :call RunKoans()<cr>f_
 map <Leader>ev :e $MYVIMRC<CR>
 
 " }}}
-
-
-" ==============================================================================
-" Vundle
-" ==============================================================================
-" {{{
-"
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-
-Bundle 'mileszs/ack.vim'
-Bundle 'ervandew/supertab'
-Bundle 'godlygeek/tabular'
-Bundle 'SirVer/ultisnips'
-Bundle 'pangloss/vim-javascript'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-cucumber'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-surround'
-Bundle 'tsaleh/vim-matchit'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'vim-scripts/vimwiki'
-Bundle 'vim-scripts/bufexplorer.zip'
-Bundle 'vim-scripts/mru.vim'
-Bundle 'groenewege/vim-less'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'skammer/vim-css-color'
-Bundle 'mattn/emmet-vim'
-Bundle 'Raimondi/delimitMate'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'vim-scripts/dbext.vim'
-Bundle 'jceb/vim-orgmode'
-Bundle 'vim-scripts/utl.vim'
-Bundle 'exu/pgsql.vim'
-Bundle 'othree/html5.vim'
-Bundle 'stephpy/vim-php-cs-fixer'
-
-Bundle 'moll/vim-node'
-Bundle 'tobyS/vmustache'
-Bundle 'tobyS/pdv'
-Bundle "tobyS/skeletons.vim"
-
-Bundle 'marijnh/tern_for_vim'
-Bundle 'arnaud-lb/vim-php-namespace'
-" }}}
-
 
 " ==============================================================================
 " Plugins
