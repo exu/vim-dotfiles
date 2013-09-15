@@ -1,9 +1,8 @@
 #!/bin/sh
 
-HOMEDIR=/home/exu
 VIMFILES=Dropbox/Dotfiles/common/vim
-VIMRCDIR=$HOMEDIR/.vimrc
-VIMDIR=$HOMEDIR/.vim
+VIMRCDIR=$HOME/.vimrc
+VIMDIR=$HOME/.vim
 
 if [ -L $VIMDIR ];
 then
@@ -15,6 +14,6 @@ then
     rm $VIMRCDIR
 fi
 
-ln -s $HOMEDIR/$VIMFILES $VIMDIR
-ln -s $HOMEDIR/$VIMFILES/vimrc $VIMRCDIR
+ln -s $HOME/$VIMFILES $VIMDIR
+ln -s $HOME/$VIMFILES/vimrc $VIMRCDIR
 

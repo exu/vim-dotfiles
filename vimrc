@@ -1,4 +1,6 @@
 " +--------------------------------------+
+"l][-[
+"-[
 " |   CUSTOM VIM CONFIG FILE             |
 " |    _______________________           |
 " |   / @author jacek wysocki \          |
@@ -99,9 +101,67 @@ set wildignore+=.project
 " Autocompletition {{{
 " disable info window on top of editor
 " set completeopt="menu"
+set tags=tags,tags.vendor,/usr/share/php/symfony/tags
 " }}}
 
 " }}}
+
+
+" ==============================================================================
+" Vundle
+" ==============================================================================
+" {{{
+"
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'mileszs/ack.vim'
+Bundle 'ervandew/supertab'
+Bundle 'godlygeek/tabular'
+Bundle 'SirVer/ultisnips'
+Bundle 'pangloss/vim-javascript'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-surround'
+Bundle 'tsaleh/vim-matchit'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+Bundle 'vim-scripts/vimwiki'
+Bundle 'vim-scripts/bufexplorer.zip'
+Bundle 'vim-scripts/mru.vim'
+Bundle 'groenewege/vim-less'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'skammer/vim-css-color'
+Bundle 'mattn/emmet-vim'
+Bundle 'Raimondi/delimitMate'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'vim-scripts/dbext.vim'
+Bundle 'jceb/vim-orgmode'
+Bundle 'vim-scripts/utl.vim'
+Bundle 'exu/pgsql.vim'
+Bundle 'othree/html5.vim'
+Bundle 'stephpy/vim-php-cs-fixer'
+
+Bundle 'moll/vim-node'
+Bundle 'tobyS/vmustache'
+Bundle 'tobyS/pdv'
+Bundle "tobyS/skeletons.vim"
+
+Bundle 'marijnh/tern_for_vim'
+Bundle 'arnaud-lb/vim-php-namespace'
+
+Bundle 'joonty/vdebug.git'
+" }}}
+
 
 " ==============================================================================
 " Keyboard Mappings
@@ -180,7 +240,7 @@ map   <A-k>       <C-W><Up>
 map   <A-l>       <C-W><Right>
 map   <Leader>j   <C-W><C-W>
 
-"NERDTree plugin bindings
+"NERDTree plug-in bindings
 map        <F4>        :NERDTree<CR>
 nnoremap   <Leader>r   :NERDTreeFind<CR>
 
@@ -196,19 +256,21 @@ nnoremap   <Leader>b   :bp<CR>
 nnoremap   <Leader>n   :bn<CR>
 nnoremap   <Leader>g   :b#<CR>
 
-nnoremap   <C-F12>     :!symfony cc<CR>
+nnoremap   <C-F12>     :!scc<CR>
 nnoremap   <C-S-F12>   :e ~/Workspace/run.sql<CR>
 nnoremap   <C-S-F11>   :call SymfonyMenu()<CR>
-nnoremap   <C-F11>     :set tags=tags,/usr/share/php/symfony/tags<CR>
+nnoremap   <C-F11>     :set tags=tags,tags.vendor,/usr/share/php/symfony/tags<CR>
+
+map       <F1>vv      :e $MYVIMRC<CR>
+map       <F1>s       :Gstatus<CR>
+
 
 "Custom escaping
-imap          <F1>          <Esc>
-map           <F1>          <Esc>
-map!          <F1>          <Esc>
 imap          <F2>          <Esc>:w<CR>
 map!          <F2>          <Esc>:w<CR>
+
 nnoremap      <C-SPACE>     i
-imap          <C-SPACE>     <Esc>
+imap          <C-SPACE>     <C-x><C-o>
 
 "Shift+Insert correction in insert modes
 map          <S-Insert>     <C-R>+
@@ -244,7 +306,7 @@ map    <Leader>ii         :call Img2Data()<CR>
 cmap   w!!                %!sudo tee > /dev/null %<CR>
 
 " Comments plugin mapping
-map    <Leader><Space>   :TComment<CR>
+" map    <Leader><Space>   :TComment<CR>
 vmap   <Leader><Space>   :TComment<CR>
 
 nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -321,6 +383,8 @@ imap <A-;> <ESC>A;<CR>
 
 map <Leader>ck :call RunKoans()<cr>f_
 
+map <Leader>ev :e $MYVIMRC<CR>
+
 " }}}
 
 " ==============================================================================
@@ -328,14 +392,7 @@ map <Leader>ck :call RunKoans()<cr>f_
 " ==============================================================================
 " {{{
 
-filetype off
 
-if has('win32')
-    "i don't want run all bundles on windows (it should be fast editor "
-    call pathogen#infect('~/vimfiles/bundle-win')
-else 
-    call pathogen#infect()
-endif
 
 filetype plugin indent on
 let g:snips_author = 'Jacek Wysocki'
@@ -356,8 +413,6 @@ let g:CommandTNeverShowDotFiles=1
 
 let g:DisableAutoPHPFolding=1
 
-
-
 " PHP-cs-fixer git://github.com/stephpy/vim-php-cs-fixer.git
 let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
 let g:php_cs_fixer_level = "all"                " which level ?
@@ -368,6 +423,8 @@ let g:php_cs_fixer_enable_default_mapping = 1   " Enable the mapping by default 
 let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
 
+let g:pdv_template_dir = $HOME .".vim/bundle/pdv/templates_snip"
+nnoremap \d :call pdv#DocumentWithSnip()<CR>
 
 " testing
 " Don't screw up folds when inserting text that might affect them, until
