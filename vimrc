@@ -53,7 +53,7 @@ set shiftwidth=4
 set tabstop=4
 " }}}
 
-" VIM Settings {{{ 
+" VIM Settings {{{
 let use_xhtml = 1 " i dont rememeber wtf is that
 let php_folding = 1 " hmm php folding :)
 set incsearch " search highlighting
@@ -158,6 +158,10 @@ Bundle 'marijnh/tern_for_vim'
 Bundle 'arnaud-lb/vim-php-namespace'
 
 Bundle 'joonty/vdebug.git'
+
+Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'tpope/vim-dispatch'
+
 " }}}
 
 
@@ -259,7 +263,7 @@ nnoremap   <C-S-F12>   :e ~/Workspace/run.sql<CR>
 nnoremap   <C-S-F11>   :call SymfonyMenu()<CR>
 nnoremap   <C-F11>     :set tags=tags,tags.vendor,/usr/share/php/symfony/tags<CR>
 
-map       <F1>vv      :e $MYVIMRC<CR>
+map       <F1>ev      :e $MYVIMRC<CR>
 map       <F1>s       :Gstatus<CR>
 
 
@@ -304,7 +308,7 @@ map    <Leader>ii         :call Img2Data()<CR>
 cmap   w!!                %!sudo tee > /dev/null %<CR>
 
 " Comments plugin mapping
-" map    <Leader><Space>   :TComment<CR>
+map    <Leader><Space>   :TComment<CR>
 vmap   <Leader><Space>   :TComment<CR>
 
 nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -440,6 +444,7 @@ let g:SuperTabDefaultCompletionType = "context"
 " ==============================================================================
 " {{{
 autocmd VimEnter * set vb t_vb=
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Current line highlighting
 autocmd InsertLeave * se nocul
@@ -452,9 +457,10 @@ au FileType lua  setlocal foldmethod=marker | setlocal foldlevel=0
 au FileType php  setlocal foldmethod=syntax | setlocal foldlevel=99 | setlocal foldlevelstart=99
 au FileType html setlocal foldmethod=syntax
 au FileType ant  setlocal foldmethod=syntax
-au FileType yaml setlocal foldmethod=indent | setlocal softtabstop=2 | setlocal shiftwidth=2 | setlocal tabstop=2
+au FileType yaml setlocal foldmethod=indent | setlocal softtabstop=4 | setlocal shiftwidth=4 | setlocal tabstop=4
 au FileType ruby setlocal foldmethod=syntax | setlocal softtabstop=2 | setlocal shiftwidth=2 | setlocal tabstop=2
 au FileType python setlocal foldmethod=indent | setlocal softtabstop=4 | setlocal shiftwidth=4 | setlocal tabstop=4
+au FileType javascript setlocal foldmethod=syntax | setlocal softtabstop=4 | setlocal shiftwidth=4 | setlocal tabstop=4
 
 au FileType eruby map <buffer> <C-?> <%=  %><C-o>2h
 au FileType ruby map <buffer> <C-?> <%=  %><C-o>2h
@@ -463,6 +469,8 @@ au FileType ruby map <buffer> <C-?> <%=  %><C-o>2h
 " au FocusLost silent! :wa
 
 au BufNewFile,BufRead *.god set filetype=ruby
+au BufNewFile,BufRead *.yml.dist set filetype=yaml
+au BufNewFile,BufRead *.lock set filetype=javascript
 au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
 
 " au BufEnter *.org            call org#SetOrgFileType()
@@ -527,14 +535,8 @@ set linebreak
 set t_Co=256
 syntax on
 set hlsearch
+colorscheme exu
 
-if has("gui_running")
-    colorscheme exu
-else
-    "colorscheme tir_black
-    " some optimization in my colorscheme allow to use it on shell
-    colorscheme exu
-endif
 " }}}
 
 

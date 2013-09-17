@@ -4,6 +4,7 @@ VIMFILES=Dropbox/Dotfiles/common/vim
 VIMRCDIR=$HOME/.vimrc
 VIMDIR=$HOME/.vim
 
+
 if [ -L $VIMDIR ];
 then
     rm $VIMDIR
@@ -17,3 +18,5 @@ fi
 ln -s $HOME/$VIMFILES $VIMDIR
 ln -s $HOME/$VIMFILES/vimrc $VIMRCDIR
 
+vim +BundleInstall +qall
+npm install ~/.vim/bundle/tern_for_vim
