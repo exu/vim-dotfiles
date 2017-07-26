@@ -7,6 +7,7 @@ from orgmode.menu import Submenu, ActionEntry
 from orgmode.keybinding import Keybinding, Plug, Command
 from orgmode import settings
 
+
 class TagsProperties(object):
 	u""" TagsProperties plugin """
 
@@ -154,12 +155,12 @@ class TagsProperties(object):
 		Registration of plugin. Key bindings and other initialization should be done.
 		"""
 		# an Action menu entry which binds "keybinding" to action ":action"
-		settings.set(u'org_tag_column', u'77')
+		settings.set(u'org_tag_column', vim.eval(u'&textwidth'))
 		settings.set(u'org_tag_completion_ignorecase', int(vim.eval(u'&ignorecase')))
 
 		cmd = Command(
 			u'OrgSetTags',
-			u':py ORGMODE.plugins[u"TagsProperties"].set_tags()<CR>')
+			u':py ORGMODE.plugins[u"TagsProperties"].set_tags()')
 		self.commands.append(cmd)
 		keybinding = Keybinding(
 			u'<localleader>st',
@@ -169,7 +170,7 @@ class TagsProperties(object):
 
 		cmd = Command(
 			u'OrgFindTags',
-			u':py ORGMODE.plugins[u"TagsProperties"].find_tags()<CR>')
+			u':py ORGMODE.plugins[u"TagsProperties"].find_tags()')
 		self.commands.append(cmd)
 		keybinding = Keybinding(
 			u'<localleader>ft',

@@ -36,7 +36,7 @@ let b:did_indent = 1
 
 " [-- local settings (must come before aborting the script) --]
 setlocal indentexpr=HtmlIndentGet(v:lnum)
-setlocal indentkeys=o,O,*<Return>,<>>,{,}
+setlocal indentkeys=o,O,*<Return>,<>>,{,},!^F
 
 
 let s:tags = []
@@ -61,6 +61,8 @@ call add(s:tags, 'dfn')
 call add(s:tags, 'dir')
 call add(s:tags, 'div')
 call add(s:tags, 'dl')
+call add(s:tags, 'dt')
+call add(s:tags, 'dd')
 call add(s:tags, 'em')
 call add(s:tags, 'fieldset')
 call add(s:tags, 'font')
@@ -130,11 +132,13 @@ call add(s:tags, 'rt')
 call add(s:tags, 'ruby')
 call add(s:tags, 'section')
 call add(s:tags, 'summary')
-call add(s:tags, 'template')
 call add(s:tags, 'time')
 call add(s:tags, 'video')
 call add(s:tags, 'bdi')
 call add(s:tags, 'data')
+
+" Web Component
+call add(s:tags, 'template')
 
 " Common inline used SVG elements
 call add(s:tags, 'clipPath')
@@ -167,12 +171,23 @@ call add(s:tags, 'tr')
 call add(s:tags, 'th')
 call add(s:tags, 'td')
 
+
+
+let s:omittable = [ 
+  \  ['address', 'article', 'aside', 'blockquote', 'dir', 'div', 'dl', 'fieldset', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'menu', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'ul'],
+  \  ['dt', 'dd'],
+  \  ['li'],
+  \  ['thead', 'tbody', 'tfoot'],
+  \  ['th', 'td'],
+  \]
+
 if exists('g:html_exclude_tags')
     for tag in g:html_exclude_tags
         call remove(s:tags, index(s:tags, tag))
     endfor
 endif
 let s:html_indent_tags = join(s:tags, '\|')
+let s:html_indent_tags = s:html_indent_tags.'\|\w\+\(-\w\+\)\+'
 if exists('g:html_indent_tags')
     let s:html_indent_tags = s:html_indent_tags.'\|'.g:html_indent_tags
 endif
@@ -267,7 +282,7 @@ fun! HtmlIndentGet(lnum)
     if   0 < searchpair(js, '', jse, 'nWb')
     \ && 0 < searchpair(js, '', jse, 'nW')
         " we're inside javascript
-        if getline(searchpair(js, '', '</script>', 'nWb')) !~ '<script [^>]*type=["'']\?text\/\(html\|template\)'
+        if getline(searchpair(js, '', '</script>', 'nWb')) !~ '<script [^>]*type=["'']\?text\/\(html\|\(ng-\)\?template\)'
         \ && getline(lnum) !~ js && getline(a:lnum) !~ jse
             if restore_ic == 0
               setlocal noic
@@ -331,11 +346,35 @@ fun! HtmlIndentGet(lnum)
         let ind = ind - 1
     endif
 
+    let lind = indent(lnum)
+
+    " for tags in s:omittable
+      " let tags_exp = '<\(' . join(tags, '\|') . '\)>'
+      " let close_tags_exp = '</\(' . join(tags, '\|') . '\)>'
+      " if getline(a:lnum) =~ tags_exp
+        " let block_start = search('^'.repeat(' ', lind + (&sw * ind - 1)).'\S'  , 'bnW')
+        " let prev_tag = search(tags_exp, 'bW', block_start)
+        " let prev_closetag = search(close_tags_exp, 'W', a:lnum)
+        " if prev_tag && !prev_closetag
+          " let ind = ind - 1
+        " endif
+      " endif
+
+      " if getline(a:lnum) =~ '</\w\+>'
+        " let block_start = search('^'.repeat(' ', lind + (&sw * ind - 1)).'\S'  , 'bnW')
+        " let prev_tag = search(tags_exp, 'bW', block_start)
+        " let prev_closetag = search(close_tags_exp, 'W', a:lnum)
+        " if prev_tag && !prev_closetag
+          " let ind = ind - 1
+        " endif
+      " endif
+    " endfor
+
     if restore_ic == 0
         setlocal noic
     endif
 
-    return indent(lnum) + (&sw * ind)
+    return lind + (&sw * ind)
 endfun
 
 let &cpo = s:cpo_save

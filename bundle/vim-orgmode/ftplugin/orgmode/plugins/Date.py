@@ -7,7 +7,7 @@ import vim
 from orgmode._vim import ORGMODE, echom, insert_at_cursor, get_user_input
 from orgmode import settings
 from orgmode.keybinding import Keybinding, Plug
-from orgmode.menu import Submenu, ActionEntry
+from orgmode.menu import Submenu, ActionEntry, add_cmd_mapping_menu
 
 
 class Date(object):
@@ -21,9 +21,10 @@ class Date(object):
 	date_regex = r"\d\d\d\d-\d\d-\d\d"
 	datetime_regex = r"[A-Z]\w\w \d\d\d\d-\d\d-\d\d \d\d:\d\d>"
 
-	month_mapping = {u'jan': 1, u'feb': 2, u'mar': 3, u'apr': 4, u'may': 5,
-			u'jun': 6, u'jul': 7, u'aug': 8, u'sep': 9, u'oct': 10, u'nov': 11,
-			u'dec': 12}
+	month_mapping = {
+		u'jan': 1, u'feb': 2, u'mar': 3, u'apr': 4, u'may': 5,
+		u'jun': 6, u'jul': 7, u'aug': 8, u'sep': 9, u'oct': 10, u'nov': 11,
+		u'dec': 12}
 
 	def __init__(self):
 		u""" Initialize plugin """
@@ -117,8 +118,9 @@ class Date(object):
 		modifier_lc = modifier.lower()
 		match = re.search(u'mon|tue|wed|thu|fri|sat|sun', modifier_lc)
 		if match:
-			weekday_mapping = {u'mon': 0, u'tue': 1, u'wed': 2, u'thu': 3,
-					u'fri': 4, u'sat': 5, u'sun': 6}
+			weekday_mapping = {
+				u'mon': 0, u'tue': 1, u'wed': 2, u'thu': 3,
+				u'fri': 4, u'sat': 5, u'sun': 6}
 			diff = (weekday_mapping[modifier_lc] - startdate.weekday()) % 7
 			# use next weeks weekday if current weekday is the same as modifier
 			if diff == 0:
@@ -160,8 +162,8 @@ class Date(object):
 
 		# check for month day
 		match = re.search(
-				u'(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec) (\d{1,2})',
-				modifier.lower())
+			u'(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec) (\d{1,2})',
+			modifier.lower())
 		if match:
 			month = cls.month_mapping[match.groups()[0]]
 			day = int(match.groups()[1])
@@ -181,8 +183,8 @@ class Date(object):
 		# check for month day year
 		# sep 12 2011
 		match = re.search(
-				u'(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec) (\d{1,2}) (\d{1,4})',
-				modifier.lower())
+			u'(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec) (\d{1,2}) (\d{1,4})',
+			modifier.lower())
 		if match:
 			month = int(cls.month_mapping[match.groups()[0]])
 			day = int(match.groups()[1])
@@ -200,8 +202,9 @@ class Date(object):
 				startdate = newdate
 			except:
 				pass
-			return datetime(startdate.year, startdate.month, startdate.day,
-					int(match.groups()[0]), int(match.groups()[1]))
+			return datetime(
+				startdate.year, startdate.month, startdate.day,
+				int(match.groups()[0]), int(match.groups()[1]))
 
 		try:
 			return newdate
@@ -217,9 +220,10 @@ class Date(object):
 		TODO: add all modifier of orgmode.
 		"""
 		today = date.today()
-		msg = u''.join([u'Inserting ',
-				unicode(today.strftime(u'%Y-%m-%d %a'), u'utf-8'),
-				u' | Modify date'])
+		msg = u''.join([
+			u'Inserting ',
+			unicode(today.strftime(u'%Y-%m-%d %a'), u'utf-8'),
+			u' | Modify date'])
 		modifier = get_user_input(msg)
 
 		# abort if the user canceled the input promt
@@ -231,10 +235,10 @@ class Date(object):
 		# format
 		if isinstance(newdate, datetime):
 			newdate = newdate.strftime(
-					u'%Y-%m-%d %a %H:%M'.encode(u'utf-8')).decode(u'utf-8')
+				u'%Y-%m-%d %a %H:%M'.encode(u'utf-8')).decode(u'utf-8')
 		else:
 			newdate = newdate.strftime(
-					u'%Y-%m-%d %a'.encode(u'utf-8')).decode(u'utf-8')
+				u'%Y-%m-%d %a'.encode(u'utf-8')).decode(u'utf-8')
 		timestamp = u'<%s>' % newdate if active else u'[%s]' % newdate
 
 		insert_at_cursor(timestamp)
@@ -266,25 +270,34 @@ class Date(object):
 
 		Key bindings and other initialization should be done here.
 		"""
-		self.keybindings.append(Keybinding(u'<localleader>sa',
-				Plug(u'OrgDateInsertTimestampActiveCmdLine',
-				u':py ORGMODE.plugins[u"Date"].insert_timestamp()<CR>')))
-		self.menu + ActionEntry(u'Timest&amp', self.keybindings[-1])
-
-		self.keybindings.append(Keybinding(u'<localleader>si',
-				Plug(u'OrgDateInsertTimestampInactiveCmdLine',
-					u':py ORGMODE.plugins[u"Date"].insert_timestamp(False)<CR>')))
-		self.menu + ActionEntry(u'Timestamp (&inactive)', self.keybindings[-1])
-
-		self.keybindings.append(Keybinding(u'<localleader>pa',
-				Plug(u'OrgDateInsertTimestampActiveWithCalendar',
-				u':py ORGMODE.plugins[u"Date"].insert_timestamp_with_calendar()<CR>')))
-		self.menu + ActionEntry(u'Timestamp with Calendar', self.keybindings[-1])
-
-		self.keybindings.append(Keybinding(u'<localleader>pi',
-				Plug(u'OrgDateInsertTimestampInactiveWithCalendar',
-					u':py ORGMODE.plugins[u"Date"].insert_timestamp_with_calendar(False)<CR>')))
-		self.menu + ActionEntry(u'Timestamp with Calendar(inactive)', self.keybindings[-1])
+		add_cmd_mapping_menu(
+			self,
+			name=u'OrgDateInsertTimestampActiveCmdLine',
+			key_mapping=u'<localleader>sa',
+			function=u':py ORGMODE.plugins[u"Date"].insert_timestamp()',
+			menu_desrc=u'Timest&amp'
+		)
+		add_cmd_mapping_menu(
+			self,
+			name=u'OrgDateInsertTimestampInactiveCmdLine',
+			key_mapping='<localleader>si',
+			function=u':py ORGMODE.plugins[u"Date"].insert_timestamp(False)',
+			menu_desrc=u'Timestamp (&inactive)'
+		)
+		add_cmd_mapping_menu(
+			self,
+			name=u'OrgDateInsertTimestampActiveWithCalendar',
+			key_mapping=u'<localleader>pa',
+			function=u':py ORGMODE.plugins[u"Date"].insert_timestamp_with_calendar()',
+			menu_desrc=u'Timestamp with Calendar'
+		)
+		add_cmd_mapping_menu(
+			self,
+			name=u'OrgDateInsertTimestampInactiveWithCalendar',
+			key_mapping=u'<localleader>pi',
+			function=u':py ORGMODE.plugins[u"Date"].insert_timestamp_with_calendar(False)',
+			menu_desrc=u'Timestamp with Calendar(inactive)'
+		)
 
 		submenu = self.menu + Submenu(u'Change &Date')
 		submenu + ActionEntry(u'Day &Earlier', u'<C-x>', u'<C-x>')

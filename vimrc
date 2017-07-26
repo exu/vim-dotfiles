@@ -112,55 +112,56 @@ set tags=tags,tags.vendor,/usr/share/php/symfony/tags
 "
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 
-Bundle 'gmarik/vundle'
+Plugin 'mileszs/ack.vim'
+Plugin 'ervandew/supertab'
+Plugin 'godlygeek/tabular'
+Plugin 'SirVer/ultisnips'
+Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-surround'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'vim-scripts/vimwiki'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'vim-scripts/mru.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'skammer/vim-css-color'
+Plugin 'mattn/emmet-vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'fatih/vim-go'
+Plugin 'vim-scripts/dbext.vim'
+Plugin 'jceb/vim-orgmode'
+Plugin 'vim-scripts/utl.vim'
+Plugin 'exu/pgsql.vim'
+Plugin 'othree/html5.vim'
+Plugin 'stephpy/vim-php-cs-fixer'
 
-Bundle 'mileszs/ack.vim'
-Bundle 'ervandew/supertab'
-Bundle 'godlygeek/tabular'
-Bundle 'SirVer/ultisnips'
-Bundle 'pangloss/vim-javascript'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-cucumber'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-surround'
-Bundle 'tsaleh/vim-matchit'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'vim-scripts/vimwiki'
-Bundle 'vim-scripts/bufexplorer.zip'
-Bundle 'vim-scripts/mru.vim'
-Bundle 'groenewege/vim-less'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'skammer/vim-css-color'
-Bundle 'mattn/emmet-vim'
-Bundle 'Raimondi/delimitMate'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'vim-scripts/dbext.vim'
-Bundle 'jceb/vim-orgmode'
-Bundle 'vim-scripts/utl.vim'
-Bundle 'exu/pgsql.vim'
-Bundle 'othree/html5.vim'
-Bundle 'stephpy/vim-php-cs-fixer'
+Plugin 'moll/vim-node'
+Plugin 'tobyS/vmustache'
+Plugin 'tobyS/pdv'
+Plugin 'tobyS/skeletons.vim'
 
-Bundle 'moll/vim-node'
-Bundle 'tobyS/vmustache'
-Bundle 'tobyS/pdv'
-Bundle "tobyS/skeletons.vim"
+" Plugin 'marijnh/tern_for_vim'
+Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'joonty/vdebug.git'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-dispatch'
 
-Bundle 'marijnh/tern_for_vim'
-Bundle 'arnaud-lb/vim-php-namespace'
-
-Bundle 'joonty/vdebug.git'
-
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'tpope/vim-dispatch'
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " }}}
 
@@ -311,7 +312,7 @@ cmap   w!!                %!sudo tee > /dev/null %<CR>
 map    <Leader><Space>   :TComment<CR>
 vmap   <Leader><Space>   :TComment<CR>
 
-nnoremap <silent> <F9> :TagbarToggle<CR>
+" nnoremap <silent> <F9> :TagbarToggle<CR>
 
 map   <Leader>.    :BufExplorer<CR>
 
@@ -400,15 +401,18 @@ filetype plugin indent on
 let g:snips_author = 'Jacek Wysocki'
 let g:gist_detect_filetype = 1
 
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 let g:vimwiki_list = [{'path': '~/.vim/wiki/'}]
+
+let g:syntastic_enable_php_checker = 1
+let g:syntastic_php_checkers = ['php', 'phpcs']
 
 " let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_disabled_filetypes = ['js', 'html']
-let g:syntastic_phpcs_disable=1 " it's annoying in CRM :)
+let g:syntastic_phpcs_disable=0
 
 let g:CommandTCaseSensitive=1
 let g:CommandTNeverShowDotFiles=1
@@ -517,7 +521,7 @@ if has("win32")
     set guifont=inconsolata:h13:cDEFAULT
 else
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
-    let g:Powerline_symbols = 'fancy'
+    "let g:Powerline_symbols = 'fancy'
     " git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
 endif
 
