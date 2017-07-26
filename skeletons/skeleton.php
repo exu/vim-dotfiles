@@ -1,2 +1,0 @@
-<?php
-/* @author Jacek Wysocki */

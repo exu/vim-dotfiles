@@ -1,6 +1,0 @@
-cd ~
-rm -rf ~/.vim
-rm ~/.vimrc
-git clone git://github.com/exu/vim-dotfiles.git
-mv vim-dotfiles .vim
-ln -s ~/.vim/vimrc ~/.vimrc
